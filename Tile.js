@@ -1,4 +1,4 @@
-
+//different types of tiles
 var TYPES = [
     "BARRIER",
     "OPEN", 
@@ -6,15 +6,23 @@ var TYPES = [
     "CHERRY"
 ]
 
+const TILE_SPEED = 0.2; // tiles movement
+const DIMENSIONS = 20; //field size 
+const SIZE = 25; //tile size
 var HALF_SIZE = SIZE / 2;
 var THIRD_SIZE = SIZE / 3;
 var QUARTER_SIZE = SIZE / 4;
 
+/**
+ * 
+ * @param {} type - type of tile
+ */
 function Tile(x, y, type) {
     this.x = x;
     this.y = y;
     this.type = type; //barrier
-
+    this.destination = (-1, -1)
+    this.intact = true;
 }
 console.log("just testing TILE");
 
@@ -43,6 +51,12 @@ Tile.prototype.draw = function() {
             fill("#FF2222");
             ellipse(this.x * SIZE + QUARTER_SIZE, this.y * SIZE + QUARTER_SIZE, HALF_SIZE);
             break;  
+
+        case "GHOST":
+            break;
+
+        case "PACMAN":
+        break;
     
     }
 };
