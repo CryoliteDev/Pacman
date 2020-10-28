@@ -15,7 +15,7 @@ class Pacman {
      */
     shouldMove() {
         if (!this.dir) { // shouldn't move initially 
-            return false;
+            return;
         }
 
         if (this.timer === this.speed) { 
@@ -33,7 +33,7 @@ class Pacman {
         let nextMovePos = this.pos + this.dir.movement; // movement from the key (setup.js)
 
         if (
-            objectExist(nextMovePos, OBJECTIVE_TYPE.WALL) ||
+            objectExist(nextMovePos, OBJECT_TYPE.WALL) ||
             objectExist(nextMovePos, OBJECT_TYPE.GHOSTLAIR)) {
             
                 nextMovePos = this.pos;
@@ -57,8 +57,10 @@ class Pacman {
         this.pos = nextMovePos;
     }
 
-    handleKeyInput(e, objectExist) {
+    handleKeyInput = (e, objectExist) => {
         let dir;
+
+        // console.log(e);
 
         if (e.keyCode >= 37 && e.keyCode <=40) {
             dir = DIRECTIONS[e.key];
@@ -72,7 +74,7 @@ class Pacman {
         }
 
         this.dir = dir;
-    }
+    };
 }
 
 export default Pacman;
