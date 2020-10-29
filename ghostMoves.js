@@ -9,7 +9,7 @@ export function randomMovement(position, direction, objectExist) {
     const keys = Object.keys(DIRECTIONS); //grabs all keys and puts 'em in array
 
     while(objectExist(nextMovePos, OBJECT_TYPE.WALL) || 
-        objectExist(nextMovePos, OBJECT_TYPE.GHOST)) {
+            objectExist(nextMovePos, OBJECT_TYPE.GHOST)) {
             //gets random key from a the key array
             const key =  keys[Math.floor(Math.random() * keys.length)];
 

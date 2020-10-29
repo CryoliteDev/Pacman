@@ -32,25 +32,20 @@ class Pacman {
     getNextMove(objectExist) {
         let nextMovePos = this.pos + this.dir.movement; // movement from the key (setup.js)
 
-        if (
-            objectExist(nextMovePos, OBJECT_TYPE.WALL) ||
+        if (objectExist(nextMovePos, OBJECT_TYPE.WALL) ||
             objectExist(nextMovePos, OBJECT_TYPE.GHOSTLAIR)) {
             
                 nextMovePos = this.pos;
         }
 
-        return{
-            nextMovePos, direction: this.dir
-        };
+        return{ nextMovePos, direction: this.dir };
     }
 
     makeMove() {
         const classesToRemove = [OBJECT_TYPE.PACMAN];
         const classesToAdd = [OBJECT_TYPE.PACMAN];
 
-        return {
-            classesToRemove, classesToAdd
-        }
+        return { classesToRemove, classesToAdd }
     }
 
     setNewPos(nextMovePos) {

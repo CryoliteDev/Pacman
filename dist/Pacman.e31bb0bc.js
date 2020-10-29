@@ -334,7 +334,6 @@ var GameBoard = /*#__PURE__*/function () {
   /**
    * Displays if the game is over or
    * Displays if the game is won
-   * @param {} gameWin 
    */
 
 
@@ -602,8 +601,7 @@ var Ghost = /*#__PURE__*/function () {
         return true;
       }
 
-      this.timer++;
-      return false;
+      this.timer++; // return false;
     }
   }, {
     key: "getNextMove",
@@ -665,7 +663,7 @@ var gameGrid = document.querySelector("#game");
 var scoreTable = document.querySelector("#score");
 var startButton = document.querySelector("#start-button"); // Game constants 
 
-var POWER_PILL_TIME = 1000; // MILLISECONDS
+var POWER_PILL_TIME = 10000; // MILLISECONDS
 
 var GLOBAL_SPEED = 80; //MILISECONDS (for game loop)
 
@@ -680,12 +678,17 @@ var powerPillTimer = null;
 
 function gameOver(pacman, grid) {
   document.removeEventListener("keydown", function (e) {
-    return pacman.handleKeyInput(e, gameBoard.objectExist);
+    return pacman.handleKeyInput(e, gameBoard.objectExist.bind(gameBoard));
   });
   gameBoard.showGameStatus(gameWin);
   clearInterval(timer);
   startButton.classList.remove("hide");
 }
+/**
+ * Checks if the pacman and the ghost 
+ * have come in to contact or not
+ */
+
 
 function checkCollision(pacman, ghosts) {
   var collidedGhost = ghosts.find(function (ghost) {
@@ -709,14 +712,46 @@ function gameLoop(pacman, ghosts) {
   // console.log("testing game loop");
   gameBoard.moveCharacter(pacman);
   checkCollision(pacman, ghosts);
-  ghosts.forEach(function (ghosts) {
-    return gameBoard.moveCharacter(ghosts);
+  ghosts.forEach(function (ghost) {
+    return gameBoard.moveCharacter(ghost);
   });
-  checkCollision(pacman, ghosts);
+  checkCollision(pacman, ghosts); // if pacman eats a dot
+
+  if (gameBoard.objectExist(pacman.pos, _setup.OBJECT_TYPE.DOT)) {
+    gameBoard.removeObject(pacman.pos, [_setup.OBJECT_TYPE.DOT]);
+    gameBoard.dotCount--;
+    score += 10;
+  } //if pacmman eats powerpill
+
+
+  if (gameBoard.objectExist(pacman.pos, _setup.OBJECT_TYPE.PILL)) {
+    gameBoard.removeObject(pacman.pos, [_setup.OBJECT_TYPE.PILL]);
+    pacman.powerPill = true;
+    score += 50;
+    clearTimeout(powerPillTimer);
+    powerPillTimer = setTimeout(function () {
+      return pacman.powerPill = false;
+    }, POWER_PILL_TIME);
+  } //change ghost scare mode 
+
+
+  if (pacman.powerPill !== powerPillActive) {
+    powerPillActive = pacman.powerPill;
+    ghosts.forEach(function (ghost) {
+      return ghost.isScared = pacman.powerPill;
+    });
+  } //if all dots are eaten
+
+
+  if (gameBoard.dotCount === 0) {
+    gameWin = true;
+    gameOver(pacman, gameGrid);
+  }
+
+  scoreTable.innerHTML = score;
 }
 
 function startGame() {
-  console.log("testing start btn");
   gameWin = false;
   powerPillActive = false;
   score = 0;
@@ -763,7 +798,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63630" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51835" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

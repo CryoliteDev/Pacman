@@ -20,7 +20,7 @@ class Ghost {
         }
 
         this.timer++;
-        return false;
+        // return false;
     }
 
     getNextMove(objectExist) {
@@ -29,7 +29,7 @@ class Ghost {
             this.dir,
             objectExist
         );
-        return { nextMovePos, direction}
+        return { nextMovePos, direction};
     }
 
     makeMove() {

@@ -10,7 +10,6 @@ class GameBoard {
     /**
      * Displays if the game is over or
      * Displays if the game is won
-     * @param {} gameWin 
      */
     showGameStatus(gameWin) {
         const div = document.createElement("div");
@@ -36,7 +35,6 @@ class GameBoard {
             if (CLASS_LIST[square] === OBJECT_TYPE.DOT) {
                 this.dotCount++;
             }
-
         });
     }
 
