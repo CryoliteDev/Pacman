@@ -3,7 +3,7 @@
 }
 
 body {
-  background: url('background_2.jpg') no-repeat center center fixed;
+  background: url("background_2.jpg") no-repeat center center fixed;
   /* background: #FF69B4; */
   background-size: cover;
 }
@@ -19,8 +19,8 @@ body {
 #game {
   position: relative;
   display: inline-grid;
-  background: #EFEBE0;
-  
+  background: #efebe0;
+
   opacity: 0.8;
 }
 
@@ -47,10 +47,10 @@ body {
   width: 200px;
   height: 50px;
   /* border: 5px darkblue solid; */
-  border: 5px #FF69B4 solid;
+  border: 5px #ff69b4 solid;
   background: white;
   margin-top: 20px;
-  color: #FB4570;
+  color: #fb4570;
   opacity: 0.7;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 2rem;
@@ -70,22 +70,22 @@ body {
 
 .blank {
   /* background: black; */
-  background: #EFEBE0;
+  background: #efebe0;
 }
 
 .wall {
-  border: 1px solid #FB4570;
+  border: 1px solid #fb4570;
   background: pink;
 }
 
 .dot {
-  background: #FB6B90;
-  border: 7px solid #EFEBE0;
+  background: #fb6b90;
+  border: 7px solid #efebe0;
 }
 
 .pill {
   background: white;
-  border: 5px solid #FB4570;
+  border: 5px solid #fb4570;
   border-radius: 70%;
 }
 
@@ -96,7 +96,7 @@ body {
 }
 
 .ghost::before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 3px;
@@ -109,7 +109,7 @@ body {
 }
 
 .ghost::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 3px;
@@ -169,4 +169,41 @@ body {
       0 20px
     );
   }
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
