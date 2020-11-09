@@ -661,7 +661,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // DOM Elements
 var gameGrid = document.querySelector("#game");
 var scoreTable = document.querySelector("#score");
-var startButton = document.querySelector("#start-button"); // Game constants 
+var startButton = document.querySelector("#start-button");
+var instructionButton = document.querySelector("#instructions-button"); // Game constants
 
 var POWER_PILL_TIME = 10000; // MILLISECONDS
 
@@ -683,9 +684,10 @@ function gameOver(pacman, grid) {
   gameBoard.showGameStatus(gameWin);
   clearInterval(timer);
   startButton.classList.remove("hide");
+  instructionButton.classList.remove("hide");
 }
 /**
- * Checks if the pacman and the ghost 
+ * Checks if the pacman and the ghost
  * have come in to contact or not
  */
 
@@ -732,7 +734,7 @@ function gameLoop(pacman, ghosts) {
     powerPillTimer = setTimeout(function () {
       return pacman.powerPill = false;
     }, POWER_PILL_TIME);
-  } //change ghost scare mode 
+  } //change ghost scare mode
 
 
   if (pacman.powerPill !== powerPillActive) {
@@ -751,11 +753,37 @@ function gameLoop(pacman, ghosts) {
   scoreTable.innerHTML = score;
 }
 
+function getInstructions() {
+  // Get the modal
+  var modal = document.getElementById("myModal"); // Get the button that opens the modal
+
+  var btn = document.getElementById("instructions-button"); // Get the <span> element that closes the modal
+
+  var span = document.getElementsByClassName("close")[0]; // When the user clicks on the button, open the modal
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }; // When the user clicks on <span> (x), close the modal
+
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  }; // When the user clicks anywhere outside of the modal, close it
+
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+}
+
 function startGame() {
   gameWin = false;
   powerPillActive = false;
   score = 0;
   startButton.classList.add("hide");
+  instructionButton.classList.add("hide");
   gameBoard.createGrid(_setup.LEVEL);
   var pacman = new _Pacman.default(2, 287);
   gameBoard.addObject(287, [_setup.OBJECT_TYPE.PACMAN]);
@@ -770,6 +798,7 @@ function startGame() {
 
 
 startButton.addEventListener("click", startGame);
+instructionButton.addEventListener("click", getInstructions);
 },{"./setup":"setup.js","./ghostMoves":"ghostMoves.js","./GameBoard":"GameBoard.js","./Pacman":"Pacman.js","./Ghosts":"Ghosts.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -798,7 +827,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50891" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50944" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
