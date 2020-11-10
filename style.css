@@ -3,11 +3,7 @@
 }
 
 body {
-<<<<<<< HEAD
   background: url('background_3.jpg') no-repeat center center fixed;
-=======
-  background: url("background_2.jpg") no-repeat center center fixed;
->>>>>>> 49a4cce2826f3707f8b2240ed02d32f756905813
   /* background: #FF69B4; */
   background-size: cover;
 }
@@ -24,12 +20,7 @@ body {
 #game {
   position: relative;
   display: inline-grid;
-<<<<<<< HEAD
   background: #EFEBE0;
-=======
-  background: #efebe0;
-
->>>>>>> 49a4cce2826f3707f8b2240ed02d32f756905813
   opacity: 0.8;
 }
 
