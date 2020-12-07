@@ -27,7 +27,7 @@ const gameBoard = GameBoard.createGameBoard(gameGrid, GAMEBOARD);
 //Initial setup
 let score = 0;
 let timer = null;
-let gameWin = false;
+let gameWon = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 
@@ -47,7 +47,7 @@ function gameOver(pacman) {
   );
 
   //show the game win screen
-  gameBoard.showGameStatus(gameWin);
+  gameBoard.showGameStatus(gameWon);
 
   //stop the game loops
   clearInterval(timer);
@@ -150,7 +150,7 @@ function gameLoop(pacman, ghosts) {
 
   //Check if all dots have been eaten, if they have then the game is won and game over is called
   if (gameBoard.dotCount === 0) {
-    gameWin = true;
+    gameWon = true;
     gameOver(pacman, ghosts);
   }
 
@@ -191,7 +191,7 @@ function startGame() {
   playAudio(soundGameStart);
 
   //hide start and instructions button at start of game and reset previous values
-  gameWin = false;
+  gameWon = false;
   powerPillActive = false;
   score = 0;
 

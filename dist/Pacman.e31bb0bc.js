@@ -427,17 +427,17 @@ var GameBoard = /*#__PURE__*/function () {
 
   (0, _createClass2.default)(GameBoard, [{
     key: "showGameStatus",
-    value: function showGameStatus(gameWin) {
+    value: function showGameStatus(gameWon) {
       // Create and show game win or game over
       var div = document.createElement("div");
       div.classList.add("game-status");
-      div.innerHTML = "".concat(gameWin ? "WIN!" : "GAME OVER!");
+      div.innerHTML = "".concat(gameWon ? "WIN!" : "GAME OVER!");
       this.DOMGrid.appendChild(div);
     } //method to create grid, called every time game starts. grid is the array of objects and the value at that index is the object at that index
 
   }, {
     key: "createGrid",
-    value: function createGrid(level) {
+    value: function createGrid(gamegrid) {
       var _this2 = this;
 
       this.dotCount = 0;
@@ -446,7 +446,7 @@ var GameBoard = /*#__PURE__*/function () {
 
       this.DOMGrid.style.cssText = "grid-template-columns: repeat(".concat(_basics.GRID_SIZE, ", ").concat(_basics.CELL_SIZE, "px);"); //loop through the gaemboard array, and create each element in the array
 
-      level.forEach(function (square) {
+      gamegrid.forEach(function (square) {
         var div = document.createElement("div"); //check value of current element and match it to classlist to get what object it's supposed to be
 
         div.classList.add("square", _basics.CLASS_LIST[square]);
@@ -520,11 +520,11 @@ var GameBoard = /*#__PURE__*/function () {
 
   }], [{
     key: "createGameBoard",
-    value: function createGameBoard(DOMGrid, level) {
+    value: function createGameBoard(DOMGrid, gamegrid) {
       //creating the empty gameboard using the previously defined constructor
       var board = new this(DOMGrid); //populate gameboard with the hardcoded array passed in from basics
 
-      board.createGrid(level);
+      board.createGrid(gamegrid);
       return board;
     }
   }]);
@@ -696,7 +696,7 @@ var gameBoard = _GameBoard.default.createGameBoard(gameGrid, _basics.GAMEBOARD);
 
 var score = 0;
 var timer = null;
-var gameWin = false;
+var gameWon = false;
 var powerPillActive = false;
 var powerPillTimer = null; //function to play sound effects
 
@@ -713,7 +713,7 @@ function gameOver(pacman) {
     return pacman.handleKeyInput(e, gameBoard.objectExist);
   }); //show the game win screen
 
-  gameBoard.showGameStatus(gameWin); //stop the game loops
+  gameBoard.showGameStatus(gameWon); //stop the game loops
 
   clearInterval(timer); //show the buttons again
 
@@ -798,7 +798,7 @@ function gameLoop(pacman, ghosts) {
 
 
   if (gameBoard.dotCount === 0) {
-    gameWin = true;
+    gameWon = true;
     gameOver(pacman, ghosts);
   } //show score on scoreboard
 
@@ -835,7 +835,7 @@ function getInstructions() {
 function startGame() {
   playAudio(_game_start.default); //hide start and instructions button at start of game and reset previous values
 
-  gameWin = false;
+  gameWon = false;
   powerPillActive = false;
   score = 0;
   startButton.classList.add("hide");
@@ -889,7 +889,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50098" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50126" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

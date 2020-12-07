@@ -7,16 +7,16 @@ class GameBoard {
     this.DOMGrid = DOMGrid;
   }
 
-  showGameStatus(gameWin) {
+  showGameStatus(gameWon) {
     // Create and show game win or game over
     const div = document.createElement("div");
     div.classList.add("game-status");
-    div.innerHTML = `${gameWin ? "WIN!" : "GAME OVER!"}`;
+    div.innerHTML = `${gameWon ? "WIN!" : "GAME OVER!"}`;
     this.DOMGrid.appendChild(div);
   }
 
   //method to create grid, called every time game starts. grid is the array of objects and the value at that index is the object at that index
-  createGrid(level) {
+  createGrid(gamegrid) {
     this.dotCount = 0;
     this.grid = [];
     this.DOMGrid.innerHTML = "";
@@ -24,7 +24,7 @@ class GameBoard {
     this.DOMGrid.style.cssText = `grid-template-columns: repeat(${GRID_SIZE}, ${CELL_SIZE}px);`;
 
     //loop through the gaemboard array, and create each element in the array
-    level.forEach((square) => {
+    gamegrid.forEach((square) => {
       const div = document.createElement("div");
 
       //check value of current element and match it to classlist to get what object it's supposed to be
@@ -94,13 +94,13 @@ class GameBoard {
   }
 
   //used to initialize class itself, can be called wihtout instantiating the class itself. we create an instance of the class and create the grid and then return the instance.
-  static createGameBoard(DOMGrid, level) {
+  static createGameBoard(DOMGrid, gamegrid) {
     //creating the empty gameboard using the previously defined constructor
     const board = new this(DOMGrid);
 
     //populate gameboard with the hardcoded array passed in from basics
 
-    board.createGrid(level);
+    board.createGrid(gamegrid);
     return board;
   }
 }
