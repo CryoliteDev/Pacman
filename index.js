@@ -1,4 +1,4 @@
-import { LEVEL, OBJECT_TYPE } from "./basics";
+import { GAMEBOARD, OBJECT_TYPE } from "./basics";
 import { randomMovement } from "./Ghosts";
 
 //Classes
@@ -22,7 +22,7 @@ const instructionButton = document.querySelector("#instructions-button");
 //Game constants
 const POWER_PILL_TIME = 10000; //ms
 const GLOBAL_SPEED = 80; // speed for the gameloop, in ms
-const gameBoard = GameBoard.createGameBoard(gameGrid, LEVEL);
+const gameBoard = GameBoard.createGameBoard(gameGrid, GAMEBOARD);
 
 //Initial setup
 let score = 0;
@@ -199,7 +199,7 @@ function startGame() {
   instructionButton.classList.add("hide");
 
   //create the new game grid from the game board each time we start a new game
-  gameBoard.createGrid(LEVEL);
+  gameBoard.createGrid(GAMEBOARD);
 
   //create pacman with a speed of two and put on the grid
   const pacman = new Pacman(2, 287);

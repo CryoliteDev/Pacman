@@ -60,7 +60,7 @@ export const CLASS_LIST = [
 
 //array that represents the gameboard/grid, the numbers correspond with the kind of object they are
 // prettier-ignore
-export const LEVEL = [
+export const GAMEBOARD = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1,
