@@ -1,4 +1,4 @@
-import { LEVEL, OBJECT_TYPE } from "./setup";
+import { LEVEL, OBJECT_TYPE } from "./basics";
 import { randomMovement } from "./ghostMoves";
 
 // Classes
