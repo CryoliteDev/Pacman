@@ -850,7 +850,7 @@ function startGame() {
     return pacman.handleKeyInput(e, gameBoard.objectExist);
   }); //create ghosts at different positions and different speeds
 
-  var ghosts = [new _Ghosts.default(5, 188, _Ghosts.randomMovement, _basics.OBJECT_TYPE.BLINKY), new _Ghosts.default(4, 209, _Ghosts.randomMovement, _basics.OBJECT_TYPE.INKY), new _Ghosts.default(3, 230, _Ghosts.randomMovement, _basics.OBJECT_TYPE.CLYDE), new _Ghosts.default(2, 251, _Ghosts.randomMovement, _basics.OBJECT_TYPE.PINKY)]; // Gameloop, start the interval that will run the game loop function, run gameLoop every 80ms
+  var ghosts = [new _Ghosts.default(5, 188, _Ghosts.randomMovement, _basics.OBJECT_TYPE.BLINKY), new _Ghosts.default(4, 189, _Ghosts.randomMovement, _basics.OBJECT_TYPE.INKY), new _Ghosts.default(3, 190, _Ghosts.randomMovement, _basics.OBJECT_TYPE.CLYDE), new _Ghosts.default(2, 191, _Ghosts.randomMovement, _basics.OBJECT_TYPE.PINKY)]; // Gameloop, start the interval that will run the game loop function, run gameLoop every 80ms
 
   timer = setInterval(function () {
     return gameLoop(pacman, ghosts);
@@ -889,7 +889,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50189" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50387" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
